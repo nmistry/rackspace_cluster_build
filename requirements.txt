@@ -1,0 +1,4 @@
+prettytable
+python-novaclient==2.15.0
+pyrax
+pyyaml

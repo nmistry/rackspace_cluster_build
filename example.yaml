@@ -1,0 +1,88 @@
+---
+rackspace_region: DFW
+rackspace_credentials: ~/.rackspace_cloud_credentials
+
+environment: example.com
+ssh_keyname: emample_com
+ssh_keyfile: ~/.ssh/id_rsa.pub
+
+default_server_image: Ubuntu 12.04 LTS (Precise Pangolin)
+default_server_flavor: 1 GB Performance
+
+private_networks:
+    - name: App
+      cidr: 10.100.1.0/24
+    - name: Database
+      cidr: 10.100.2.0/24
+    - name: Management
+      cidr: 10.100.3.0/24
+
+servers :
+    - name: app01
+      networks:
+        - App
+        - Database
+        - Management
+      load_balancers:
+        - name: applb-https
+          port: 443
+          # enabled: True is the default
+        - name: applb-http
+          port: 80
+          enabled: False
+    - name: app02
+      networks:
+        - App
+        - Database
+        - Management
+      load_balancers:
+        - name: applb-https
+          port: 443
+        - name: applb-http
+          port: 80
+    - name: db01
+      networks:
+        - Database
+        - Management
+      block_storage:
+        size: 100
+        type: SSD
+        mount: /dev/xvdb
+    - name: db02
+      networks:
+        - Database
+        - Management
+      block_storage:
+        size: 100
+        type: SSD
+        mount: /dev/xvdb
+    - name: util01
+      flavor: 1 GB Performance
+      networks:
+        - App
+        - Management
+    - name: util02
+      flavor: 2 GB Performance
+      networks:
+        - App
+        - Management
+
+load_balancers:
+   - name: applb-https
+      protocol: HTTPS
+      port: 443
+      count: 1
+      vip_type: PUBLIC
+      algorithm: LEAST_CONNECTIONS
+      session_persistence: SOURCE_IP
+      connection_logging: True
+    - name: applb-http
+      protocol: HTTP
+      port: 80
+      count: 1
+      vip_type: PUBLIC
+      algorithm: LEAST_CONNECTIONS
+      session_persistence: SOURCE_IP
+      connection_logging: True
+
+
