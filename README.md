@@ -3,13 +3,13 @@ rackspace_cluster_build
 
 Describe a cloud environment in yaml and build it automagically
 
-# installation
+## installation
 pip install -r requirements.txt
 
-# usage
+## usage
 python rackspace_cluster_build.py --config environment.yaml
 
-# configuration
+## configuration
 
 Simple environment:
 ```
@@ -32,7 +32,7 @@ servers :
 
 for a more complex example look at example.yaml
 
-# limitations
+## limitations
 - have not recorded root password, must use ssh keys
 - only one block storage device per host
 - load balancers cant share a vip (yet)
