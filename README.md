@@ -4,10 +4,10 @@ rackspace_cluster_build
 Describe a cloud environment in yaml and build it automagically
 
 ## installation
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 ## usage
-python rackspace_cluster_build.py --config environment.yaml
+    python rackspace_cluster_build.py --config environment.yaml
 
 ## configuration
 
