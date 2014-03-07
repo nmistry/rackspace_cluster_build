@@ -1,0 +1,13 @@
+---
+rackspace_region: IAD
+rackspace_credentials: ~/.rackspace_cloud_credentials
+
+environment: example.com
+ssh_keyname: example_com
+ssh_keyfile: ~/.ssh/id_rsa.pub
+
+default_server_image: Ubuntu 12.04 LTS (Precise Pangolin)
+default_server_flavor: 1 GB Performance
+
+servers :
+    - name: myserver

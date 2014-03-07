@@ -257,7 +257,7 @@ def print_report(servers, loadbalancers):
     network_names = list(set(sum([server.addresses.keys() for server in servers], [])))
     network_names.sort()
 
-    server_table = PrettyTable(["Name", "accessIPv4"] + network_names )
+    server_table = PrettyTable(["Name", "Pasword", "accessIPv4"] + network_names )
 
     for s in servers:
         address_list = []
@@ -268,7 +268,7 @@ def print_report(servers, loadbalancers):
             else:
                 address_list.append('')
 
-        data = [s.name, s.accessIPv4] + address_list
+        data = [s.name, s.adminPass, s.accessIPv4] + address_list
         server_table.add_row(data)
 
     lb_table = PrettyTable(["Name", "Port", "VIPs", "Source IPV4 public", "Source  IPV4 Servicenet"])
